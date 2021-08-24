@@ -6,10 +6,14 @@ const Persons = {
         return res.send('To be implemented')
     },
 
-    async show (req, res) {        
+    async show (req, res) {
         const personId = req.params.id
-        let group = await Group.find({"people._id": personId})
-        group = group[0]
+        let group = await Group.findOne({"people._id": personId})
+
+        if (!group) {
+            return res.status(404).json({ errorMsg: `Person id ${req.params.id} not found` })
+        }        
+
         let person = group.people.find(person => person._id == personId)
 
         person = {
@@ -19,9 +23,6 @@ const Persons = {
             grpName: group.name
         }
 
-        if (!person) {
-            person = { error: `Person id ${req.params.id} not found` }
-        }
         return res.json(person)
     },
 

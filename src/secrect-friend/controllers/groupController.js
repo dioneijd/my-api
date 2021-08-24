@@ -13,7 +13,7 @@ const Groups = {
         let group = await Group.findById(req.params.id)
 
         if (!group) {
-            group = { error: `Group id ${req.params.id} not found` }
+            group = { errorMsg: `Group id ${req.params.id} not found` }
         }
         return res.json(group)
     },
@@ -61,7 +61,7 @@ const Groups = {
         const groupStored = await Group.create(grp)
 
         if (groupStored) return res.json(groupStored)        
-        return res.status(500).json({error: "erro to create group"})
+        return res.status(500).json({errorMsg: "Error to create group"})
 
     },
 
