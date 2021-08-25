@@ -28,16 +28,12 @@ const Groups = {
             return res.status(400).json({errorMsg: 'Its missing the people'})
         
         if (grp.people.length < 3) 
-            return res.status(400).json({errorMsg: 'It should have at least 3 people to create a group'})
-        
-        // grp.people.sort()
-        // if (grp.people.find((p, i) => grp.people.length == i+1 ? false : p.name == grp.people[i+1].name ))
-        // {
-        //     return res.status(400).json({errorMsg: 'People node has duplicate names, it not allowed.'})
-        // }
+            return res.status(400).json({errorMsg: 'It should have at least 3 people to create a group'})        
 
+        if (await grp.people.every(async (pToChk, index) => grp.people.findIndex(async person => person.name == pToChk.name) == index ))
+            return res.status(400).json({errorMsg: 'People node has duplicate names, it not allowed.'})
 
-
+            
         let peopleShuffle = JSON.parse(JSON.stringify(grp.people))
         let hasProblem = false
 
@@ -60,7 +56,8 @@ const Groups = {
 
         const groupStored = await Group.create(grp)
 
-        if (groupStored) return res.json(groupStored)        
+        if (groupStored) return res.status(201).json(groupStored)
+
         return res.status(500).json({errorMsg: "Error to create group"})
 
     },

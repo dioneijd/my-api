@@ -12,7 +12,7 @@ routes.get('/', (req, res) =>{
 
     html += SetBoxTitle('<b>GROUPS - GET (list)</b>')
     html += SetBoxBody('<b>Url:</b> /sf/groups')
-    temp  = '<b>Success Return:</b>'
+    temp  = '<b>Return 200:</b>'
     temp += ApiJsonReturn('["6015ed2ea9d63d26d0450ea5","6125782b3c2dcd0b983fe3c5"]')    
     html += SetBoxBody(temp)    
 
@@ -20,10 +20,10 @@ routes.get('/', (req, res) =>{
 
     html += SetBoxTitle('<b>GROUPS - GET (by ID)</b>')
     html += SetBoxBody('<b>Url:</b> /sf/groups/:id')
-    temp  = '<b>Success Return:</b>'
+    temp  = '<b>Return 200:</b>'
     temp += ApiJsonReturn('{"_id": "6015ed2ea9d63d26d0450ea5","people": [{"_id": "6015ed2ea9d63d26d0450ea6","name": "Dionei","friend": "Grasi"},{"_id": "6015ed2ea9d63d26d0450ea7","name": "Manu","friend": "Dionei"},{"_id": "6015ed2ea9d63d26d0450ea8","name": "Grasi","friend": "Manu"}],"createdAt": "2021-01-30T23:35:10.528Z","updatedAt": "2021-01-30T23:35:10.528Z","__v": 0}')
     html += SetBoxBody(temp)
-    temp  = '<b>Error Return 500:</b>'
+    temp  = '<b>Return 500:</b>'
     temp += ApiJsonReturn('{"errorMsg": "Group id 5fcc32cc708b471f9cef6a64 not found"}')
     html += SetBoxBody(temp)
 
@@ -34,15 +34,16 @@ routes.get('/', (req, res) =>{
     temp  = '<b>Body Input:</b>'
     temp += ApiJsonReturn('{"name": "Grupo da Familia","people": [{"name": "Dionei"},{"name": "Manu"},{"name": "Duda"}]}')    
     html += SetBoxBody(temp)
-    temp  = '<b>Success Return:</b>'
+    temp  = '<b>Return 201:</b>'
     temp += ApiJsonReturn('{"_id": "6125782b3c2dcd0b983fe3c5","name": "Grupo da Familia","people": [{"_id": "6125782b3c2dcd0b983fe3c6","name": "Dionei","friend": "Duda"},{"_id": "6125782b3c2dcd0b983fe3c7","name": "Manu","friend": "Dionei"},{"_id": "6125782b3c2dcd0b983fe3c8","name": "Duda","friend": "Manu"}],"createdAt": "2021-08-24T22:52:27.362Z","updatedAt": "2021-08-24T22:52:27.362Z"}')
     html += SetBoxBody(temp)    
-    temp  = '<b>Error Return 400:</b>'
+    temp  = '<b>Return 400:</b>'
     temp += ApiJsonReturn('{"errorMsg": "Its missing the group name"}')
     temp += ApiJsonReturn('{"errorMsg": "Its missing the people"}')
     temp += ApiJsonReturn('{"errorMsg": "It should have at least 3 people to create a group"}')
+    temp += ApiJsonReturn('{"errorMsg": "People node has duplicate names, it not allowed."}')
     html += SetBoxBody(temp)
-    temp  = '<b>Error Return 500:</b>'
+    temp  = '<b>Return 500:</b>'
     temp += ApiJsonReturn('{"errorMsg": "Error to create group"}')
     html += SetBoxBody(temp)
 
@@ -50,10 +51,10 @@ routes.get('/', (req, res) =>{
 
     html += SetBoxTitle('<b>PERSON - GET (by ID)</b>')
     html += SetBoxBody('<b>Url:</b> /sf/p/:id')
-    temp  = '<b>Success Return:</b>'
+    temp  = '<b>Return 200:</b>'
     temp += ApiJsonReturn('{"_id": "6125782b3c2dcd0b983fe3c7","name": "Manu","friend": "Dionei","grpName": "Grupo da Familia"}')
     html += SetBoxBody(temp)
-    temp  = '<b>Error Return 404:</b>'
+    temp  = '<b>Return 404:</b>'
     temp += ApiJsonReturn('{"errorMsg": "Person id 6015867353c2b20e5cbc2bca not found"}')
     html += SetBoxBody(temp)
 
