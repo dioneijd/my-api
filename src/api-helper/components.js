@@ -4,7 +4,7 @@ const lightGreen = '#66cc91',
 
 
 
-const builder = {
+const components = {
 
     SetPageHeader: (title, subTitle) => {
         const style = `
@@ -19,10 +19,10 @@ const builder = {
                     `
 
         return `<div style="${style}">
-                    <h1 style="font-family: sans-serif; font-size: 38px; margin-bottom: 0px">${title}</h1>
-                    <h3 style="font-family: sans-serif; margin: 0 0 10px 0; color: ${lightGreen}" >${subTitle}</h3>
+                    <h1 style="font-family: sans-serif; font-size: 38px; margin-bottom: 10px">${title}</h1>
+                    ${(subTitle) ? `<h3 style="font-family: sans-serif; margin: -10px 0 10px 0; color: ${lightGreen}" >${subTitle}</h3>` : ''}
                 </div>
-                <div style="height: 120px; background: ${white};"></div>`
+                <div style="height: 110px; background: ${white};"></div>`
 
     },
 
@@ -75,7 +75,23 @@ const builder = {
                     <textarea style="${styleTxt}" readonly rows=${rows} cols="100%">${json}
                     </textarea>
                 </div>`
+    },
+
+    SetButton: (text, url) => {
+        const style = `
+                    padding: 0px 10px;
+                    margin-right: 10px;
+                    font-family: sans-serif;
+                    box-shadow: 1px 1px 3px ${lightGreen};
+                    cursor: pointer;
+                    min-width: 80px;
+                    `
+
+        return `<form action="${url}" style="display: inline;">
+                    <button style="${style}" type="submit">${text}</button>
+                </form>`
+
     }
 }
 
-module.exports = builder
+module.exports = components
