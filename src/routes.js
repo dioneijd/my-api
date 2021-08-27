@@ -1,35 +1,22 @@
 const express = require('express')
 const routes = express.Router()
-const b = require('./api-helper/htmlBuilder')
-const sf = require('./api-helper/docs-sf')
-
-
+const sf = require('./api-helper/pages-sf')
 
 routes.get('/help/sf/groups', (req, res) => {
-    let html = ''
-    html  = b.SetPageHeader('MY API', 'SECRECT FRIENDS')
-    html += sf.HelpOfGroups()
-
+    const html = sf.PageOfGroups()
     return res.send(html)
 })
 
 routes.get('/help/sf/p', (req, res) => {
-    let html = ''
-    html  = b.SetPageHeader('MY API', 'SECRECT FRIENDS')
-    html += sf.HelpOfPerson()
-
+    const html = sf.PageOfPerson()
     return res.send(html)
 })
 
 routes.get('/help/sf', (req, res) => {
-    let html = ''
-    html  = b.SetPageHeader('MY API', 'SECRECT FRIENDS')
-    html += sf.HelpOfGroups()
-    html += '<br/><br/><br/>'    
-    html += sf.HelpOfPerson()
-
+    const html = sf.PageOfSecretFriend()
     return res.send(html)
 })
+
 
 // Redirecting
 routes.get('/', (req, res) =>{

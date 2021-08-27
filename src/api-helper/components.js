@@ -1,6 +1,5 @@
-const lightGray  = '#ffffff',
-      lightGreen = '#66cc91',
-      softWhite  = '#f0f0f0',
+const lightGreen = '#66cc91',
+      lightGray  = '#f0f0f0',
       white      = '#ffffff'
 
 
@@ -9,7 +8,7 @@ const builder = {
 
     SetPageHeader: (title, subTitle) => {
         const style = `
-                    background: ${softWhite};
+                    background: ${lightGray};
                     position: fixed;
                     padding-left: 10px;
                     top: 0;
@@ -26,9 +25,10 @@ const builder = {
                 <div style="height: 120px; background: ${white};"></div>`
 
     },
+
     SetBoxTitle: (children) => {
         const style = `
-                    background: ${lightGreen}; 
+                    background: ${lightGreen};
                     padding: 10px;
                     margin: 0px;
                     font-family: sans-serif;
@@ -59,7 +59,7 @@ const builder = {
         const rows = (json.match(new RegExp('\n', 'g')) || []).length + 2
 
         const styleDiv = `
-                    background: ${softWhite}; 
+                    background: ${lightGray}; 
                     padding: 20px;
                     margin-top: 5px;
                     `
