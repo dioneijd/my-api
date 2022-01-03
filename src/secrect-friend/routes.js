@@ -8,7 +8,7 @@ routes.get('/sf/groups', groupController.index)
 routes.get('/sf/groups/:id', groupController.show)
 routes.post('/sf/groups', groupController.store)
 routes.put('/sf/groups', NotImplemented)
-routes.delete('/sf/groups', NotImplemented)
+routes.delete('/sf/groups/:id', groupController.destroy)
 
 routes.get('/sf/p', NotImplemented)
 routes.get('/sf/p/:id', personController.show)

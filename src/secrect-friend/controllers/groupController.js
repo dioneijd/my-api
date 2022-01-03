@@ -1,4 +1,3 @@
-const mongo = require('mongoose')
 const Group = require('../models/Group')
 
 
@@ -10,10 +9,11 @@ const Groups = {
     },
 
     async show (req, res) {
-        let group = await Group.findById(req.params.id)
+        const { id } = req.params
+        let group = await Group.findById(id)
 
         if (!group) {
-            group = { errorMsg: `Group id ${req.params.id} not found` }
+            group = { errorMsg: `Group id ${id} not found` }
         }
         return res.json(group)
     },
@@ -67,7 +67,17 @@ const Groups = {
     },
 
     async destroy (req, res) {
-        return res.send('To be implemented')
+        const { id } = req.params
+        let group = await Group.findById(id)
+
+        if (!group) {
+            group = { errorMsg: `Group id ${id} not found` }
+        }
+
+        await Group.deleteOne({ _id: id })
+
+        return res.status(200).json(group)
+        
     }
 
 

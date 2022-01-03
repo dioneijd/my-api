@@ -1,4 +1,3 @@
-const mongo = require('mongoose')
 const Group = require('../models/Group')
 
 const Persons = {
