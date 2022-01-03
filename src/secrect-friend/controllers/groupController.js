@@ -22,16 +22,16 @@ const Groups = {
         let grp = req.body
 
         if (grp.name == "" || grp.name == undefined)
-            return res.status(400).json({error: "041", errorMsg: 'Its missing the group name'})
+            return res.status(200).json({error: "041", errorMsg: 'Its missing the group name'})
 
         if (grp.people == undefined)
-            return res.status(400).json({error: "042", errorMsg: 'Its missing the people'})
+            return res.status(200).json({error: "042", errorMsg: 'Its missing the people'})
         
         if (grp.people.length < 3) 
-            return res.status(400).json({error: "043", errorMsg: 'It should have at least 3 people to create a group'})        
+            return res.status(200).json({error: "043", errorMsg: 'It should have at least 3 people to create a group'})        
 
         if (!grp.people.every((pToChk, index) => grp.people.findIndex( person => person.name == pToChk.name) == index ))
-            return res.status(400).json({error: "044", errorMsg: 'People node has duplicate names, it not allowed.'})
+            return res.status(200).json({error: "044", errorMsg: 'People node has duplicate names, it not allowed.'})
 
             
         let peopleShuffle = JSON.parse(JSON.stringify(grp.people))
