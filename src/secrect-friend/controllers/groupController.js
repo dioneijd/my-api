@@ -30,7 +30,7 @@ const Groups = {
         if (grp.people.length < 3) 
             return res.status(400).json({error: "043", errorMsg: 'It should have at least 3 people to create a group'})        
 
-        if (await grp.people.every(async (pToChk, index) => grp.people.findIndex(async person => person.name == pToChk.name) == index ))
+        if (!grp.people.every((pToChk, index) => grp.people.findIndex( person => person.name == pToChk.name) == index ))
             return res.status(400).json({error: "044", errorMsg: 'People node has duplicate names, it not allowed.'})
 
             
