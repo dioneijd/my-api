@@ -24,6 +24,9 @@ const Groups = {
         if (grp.name == "" || grp.name == undefined)
             return res.status(200).json({error: "041", errorMsg: 'Its missing the group name'})
 
+        if (grp.eventDate == "" || grp.eventDate == undefined)
+            return res.status(200).json({error: "045", errorMsg: 'Its missing the group event date'})
+
         if (grp.people == undefined)
             return res.status(200).json({error: "042", errorMsg: 'Its missing the people'})
         
@@ -79,8 +82,6 @@ const Groups = {
         return res.status(200).json(group)
         
     }
-
-
 }
 
 module.exports = Groups
