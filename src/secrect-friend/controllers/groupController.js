@@ -12,9 +12,9 @@ const Groups = {
         const { id } = req.params
         let group = await Group.findById(id)
 
-        if (!group) {
-            group = { errorMsg: `Group id ${id} not found` }
-        }
+        if (!group) 
+            return res.status(200).json({error: "046", errorMsg: `Group id ${id} not found`})
+        
         return res.json(group)
     },
 
@@ -73,10 +73,9 @@ const Groups = {
         const { id } = req.params
         let group = await Group.findById(id)
 
-        if (!group) {
-            group = { errorMsg: `Group id ${id} not found` }
-        }
-
+        if (!group)
+            return res.status(200).json({error: "046", errorMsg: `Group id ${id} not found`})
+        
         await Group.deleteOne({ _id: id })
 
         return res.status(200).json(group)
